@@ -1,6 +1,5 @@
 ﻿<div align="center">
   <img src="logo.png" alt="Clarix" width="180"/>
-  <h1>⛓️ Clarix — Capacity & Sourcing Engine</h1>
   <p>Built in one day at the <strong>Danfoss Climate Solutions AI Hackathon</strong> (April 2026, Denmark)</p>
   <a href="https://clarix-danfoss.streamlit.app"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Open in Streamlit"/></a>
 </div>
