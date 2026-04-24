@@ -13,3 +13,4 @@ google-generativeai>=0.8
 
 python-dotenv>=1.0
 scipy>=1.12
+reportlab>=4.0
