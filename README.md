@@ -1,6 +1,6 @@
 ﻿<div align="center">
   <img src="logo.png" alt="Clarix" width="180"/>
-  <h1>Clarix — Capacity & Sourcing Engine</h1>
+  <h1>⛓️ Clarix — Capacity & Sourcing Engine</h1>
   <p>Built in one day at the <strong>Danfoss Climate Solutions AI Hackathon</strong> (April 2026, Denmark)</p>
   <a href="https://clarix-danfoss.streamlit.app"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Open in Streamlit"/></a>
 </div>
@@ -9,7 +9,7 @@
 
 ### What is this?
 
-Danfoss challenged teams to solve a real manufacturing planning problem: **how do you turn an uncertain sales pipeline into concrete factory and sourcing decisions before a shortage becomes expensive?** Clarix answers that by propagating probability-weighted demand through real production constraints — maintenance windows, tool cycle times, OEE, shift limits — and surfacing a ranked action list for planners.
+Danfoss challenged teams to solve a real manufacturing planning problem: **how do you turn an uncertain sales pipeline into concrete factory and sourcing decisions before a shortage becomes expensive?** Clarix answers that by propagating probability-weighted demand through real production constraints, maintenance windows, tool cycle times, OEE, shift limits, and surfacing a ranked action list for planners.
 
 ---
 
@@ -28,12 +28,16 @@ Danfoss challenged teams to solve a real manufacturing planning problem: **how d
 
 ## What it does
 
-- **13-page Streamlit dashboard** — capacity planner, bottleneck detector, sourcing MRP, logistics disruptions, executive overview
-- **4 scenarios** — base / optimistic / pessimistic / monte carlo
-- **AI agent** — Claude `tool_use` answers natural-language planner questions backed by real engine data
-- **Demo mode** — guided 7-step narrative with step banners
+- **13-page Streamlit dashboard:** capacity planner, bottleneck detector, sourcing MRP, logistics disruptions, executive overview
+- **4 scenarios:** base / optimistic / pessimistic / monte carlo
+- **AI agent:** Claude `tool_use` answers natural-language planner questions backed by real engine data
+- **Demo mode:** guided 7-step narrative with step banners
 
 ---
+
+## 🧪 Live Demo
+
+Get a feel of our solution at: https://clarix-danfoss.streamlit.app/
 
 ## Quick start
 
@@ -54,13 +58,13 @@ Opens at **http://localhost:8501**.
 
 ---
 
-## Team
+## 👥 Team
 
 | Name | GitHub |
 |------|--------|
-| Luigi | [@Lucol24](https://github.com/Lucol24) |
-| Carolina | [@chaeyrie](https://github.com/chaeyrie) |
-| Gabriele | [@Gabbo693](https://github.com/Gabbo693) |
-| Lara | [@Lara-Ghi](https://github.com/Lara-Ghi) |
-| Mats | [@mqts241](https://github.com/mqts241) |
+| Luigi | [Lucol24](https://github.com/Lucol24) |
+| Carolina | [chaeyrie](https://github.com/chaeyrie) |
+| Gabriele | [Gabbo693](https://github.com/Gabbo693) |
+| Lara | [Lara-Ghi](https://github.com/Lara-Ghi) |
+| Mats | [mqts241](https://github.com/mqts241) |
 | Manish | — |
