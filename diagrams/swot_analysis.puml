@@ -1,0 +1,64 @@
+﻿@startuml Clarix_SWOT_Analysis
+' ============================================================
+'  CLARIX  -  SWOT (consulting style, ASCII-safe)
+'  Reflects the implemented Streamlit app + Anthropic agent
+' ============================================================
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundCorner 4
+skinparam padding 8
+skinparam nodesep 0
+skinparam ranksep 0
+
+skinparam rectangle {
+    BorderThickness 1
+    BorderColor #1F2A44
+    FontColor #1F2A44
+}
+
+skinparam titleFontSize 22
+skinparam titleFontColor #1F2A44
+skinparam titleFontStyle bold
+skinparam titleBorderThickness 0
+
+title CLARIX  |  SWOT Analysis\n<size:11><color:#6B7280>Probabilistic Capacity-and-Sourcing Engine  |  Danfoss Climate Solutions  |  Hackathon Case 3</color></size>
+
+' ====== Axis labels ======
+rectangle "  " as AX_TL #FFFFFF
+rectangle "<b><color:#6B7280>HELPFUL</color></b>" as AX_HELP #FFFFFF
+rectangle "<b><color:#6B7280>HARMFUL</color></b>" as AX_HARM #FFFFFF
+rectangle "<b><color:#6B7280>INTERNAL</color></b>" as AX_INT #FFFFFF
+rectangle "<b><color:#6B7280>EXTERNAL</color></b>" as AX_EXT #FFFFFF
+
+AX_TL    -[hidden]right- AX_HELP
+AX_HELP  -[hidden]right- AX_HARM
+AX_TL    -[hidden]down-  AX_INT
+AX_INT   -[hidden]down-  AX_EXT
+
+' ====== STRENGTHS ======
+rectangle "<b><size:16>STRENGTHS</size></b>\n<size:10><color:#6B7280>what we built well</color></size>\n\n<b>01</b>  Anchored on the real workbook\n<size:10><color:#6B7280>9 sheets -> 8 canonical tables, parquet-cached</color></size>\n\n<b>02</b>  End-to-end causal chain\n<size:10><color:#6B7280>pipeline -> WC load -> BOM -> order date</color></size>\n\n<b>03</b>  Four transparent scenarios\n<size:10><color:#6B7280>all-in / expected / high-conf / Monte Carlo</color></size>\n\n<b>04</b>  Action output, not charts only\n<size:10><color:#6B7280>ranked WC bottlenecks + dated PO list</color></size>\n\n<b>05</b>  Conversational planner copilot\n<size:10><color:#6B7280>Claude Sonnet 4.5 with 5 tool calls</color></size>" as STR #F4F6FA
+
+' ====== WEAKNESSES ======
+rectangle "<b><size:16>WEAKNESSES</size></b>\n<size:10><color:#6B7280>where we are limited</color></size>\n\n<b>01</b>  Trusts the given probabilities\n<size:10><color:#6B7280>no ML calibration in v1</color></size>\n\n<b>02</b>  Rule-based maintenance buffer\n<size:10><color:#6B7280>OEE applied flat, not predicted</color></size>\n\n<b>03</b>  Monthly demand spread evenly\n<size:10><color:#6B7280>no day-of-month seasonality yet</color></size>\n\n<b>04</b>  Single-source ATP snapshot\n<size:10><color:#6B7280>uses latest day, not roll-forward</color></size>\n\n<b>05</b>  Demoed at 15 plants, no SAP write-back\n<size:10><color:#6B7280>read-only; planner exports CSV</color></size>" as WEA #F4F6FA
+
+' ====== OPPORTUNITIES ======
+rectangle "<b><size:16>OPPORTUNITIES</size></b>\n<size:10><color:#6B7280>where to grow</color></size>\n\n<b>01</b>  Working-capital release\n<size:10><color:#6B7280>order-by date trims safety stock 10-15%</color></size>\n\n<b>02</b>  Cross-factory tool routing\n<size:10><color:#6B7280>same tool number across NW01-NW15</color></size>\n\n<b>03</b>  Planner-friendly Q&A\n<size:10><color:#6B7280>agent translates engine output to action</color></size>\n\n<b>04</b>  Plug-in for SAP / Anaplan\n<size:10><color:#6B7280>same canonical tables, two source adapters</color></size>\n\n<b>05</b>  Live commercial review hook\n<size:10><color:#6B7280>price tweaks update probability + load instantly</color></size>" as OPP #F4F6FA
+
+' ====== THREATS ======
+rectangle "<b><size:16>THREATS</size></b>\n<size:10><color:#6B7280>what could derail us</color></size>\n\n<b>01</b>  Raw-material lead-time volatility\n<size:10><color:#6B7280>steel & nickel can shift by weeks</color></size>\n\n<b>02</b>  Unplanned tool downtime\n<size:10><color:#6B7280>tool failure breaks the schedule</color></size>\n\n<b>03</b>  Pipeline-vs-baseline overlap\n<size:10><color:#6B7280>risk of double-counting demand</color></size>\n\n<b>04</b>  Data-quality dependency\n<size:10><color:#6B7280>missing CT, WC or tool flagged in UI</color></size>\n\n<b>05</b>  Incumbent APS tools\n<size:10><color:#6B7280>Kinaxis / o9 / OMP own enterprise mindshare</color></size>" as THR #F4F6FA
+
+' ====== Layout ======
+AX_HELP -[hidden]down- STR
+AX_HARM -[hidden]down- WEA
+AX_INT  -[hidden]right- STR
+AX_EXT  -[hidden]right- OPP
+
+STR -[hidden]right- WEA
+OPP -[hidden]right- THR
+STR -[hidden]down-  OPP
+WEA -[hidden]down-  THR
+
+@enduml

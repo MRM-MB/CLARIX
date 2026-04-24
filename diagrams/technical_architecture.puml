@@ -1,0 +1,103 @@
+﻿@startuml Clarix_Technical_Architecture
+' ============================================================
+'  CLARIX  -  System Architecture (C4-style, ASCII-safe)
+'  Mirrors the real implementation:
+'     app.py + clarix/{data_loader, engine, agent, charts}
+' ============================================================
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam roundCorner 4
+skinparam padding 6
+skinparam nodesep 25
+skinparam ranksep 35
+
+skinparam ArrowColor #1F2A44
+skinparam ArrowThickness 1.2
+skinparam ArrowFontColor #1F2A44
+skinparam ArrowFontSize 10
+skinparam ArrowFontStyle italic
+
+skinparam rectangle {
+    BorderThickness 1
+    BorderColor #1F2A44
+    FontColor #1F2A44
+}
+
+skinparam package {
+    BorderThickness 1
+    BorderColor #C5CCD9
+    BackgroundColor #FAFBFC
+    FontStyle bold
+    FontColor #6B7280
+    FontSize 11
+}
+
+skinparam titleFontSize 22
+skinparam titleFontColor #1F2A44
+skinparam titleFontStyle bold
+
+title CLARIX  |  System Architecture\n<size:11><color:#6B7280>Probabilistic Capacity-and-Sourcing Engine  |  Streamlit + Claude Sonnet 4.5</color></size>
+
+' ============================================================
+'  TIER 1 - INTERFACE  (Streamlit pages)
+' ============================================================
+package "INTERFACE  -  app.py  (Streamlit)" as T1 {
+    rectangle "<b>Production Planner</b>\n<size:10><color:#6B7280>person  |  primary user</color></size>" as PLANNER #FFFFFF
+    rectangle "<b>Streamlit Dashboard</b>  <size:10><color:#6B7280>// 5 pages</color></size>\n====================\nExecutive overview\nCapacity planner (heatmap)\nBottlenecks (ranked)\nSourcing & MRP (PO list)\nAsk Clarix (chat)" as UI #EEF2F7
+}
+
+' ============================================================
+'  TIER 2 - AI ORCHESTRATION  (clarix.agent)
+' ============================================================
+package "AI ORCHESTRATION  -  clarix.agent" as T2 {
+    rectangle "<color:#FFFFFF><b>Claude Sonnet 4.5</b></color>  <color:#9AA5B4><size:10>// tool-use loop, max 6 iters</size></color>\n<color:#3D4A66>====================</color>\n<color:#FFFFFF><b>></b>  get_capacity_forecast</color>\n<color:#FFFFFF><b>></b>  run_scenario</color>\n<color:#FFFFFF><b>></b>  get_bottlenecks</color>\n<color:#FFFFFF><b>></b>  get_sourcing_recommendations</color>\n<color:#FFFFFF><b>></b>  explain_constraint</color>\n<color:#3D4A66>--------------------</color>\n<color:#9AA5B4><size:10>fallback: deterministic planner mode</size></color>" as AGENT #1F2A44
+}
+
+' ============================================================
+'  TIER 3 - DOMAIN ENGINES  (clarix.engine, pure pandas)
+' ============================================================
+package "DOMAIN ENGINES  -  clarix.engine  (pandas)" as T3 {
+    rectangle "<b>Capacity Engine</b>\n<size:10><color:#6B7280>demand_qty x cycle_time</color></size>\n<size:10><color:#6B7280>vs WC available hours</color></size>" as CAP #EEF2F7
+    rectangle "<b>Scenario Layer</b>\n<size:10><color:#6B7280>all_in / expected /</color></size>\n<size:10><color:#6B7280>high_confidence / monte_carlo</color></size>" as SCEN #EEF2F7
+    rectangle "<b>Bottleneck Detector</b>\n<size:10><color:#6B7280>>=85% warn  |  >=100% critical</color></size>\n<size:10><color:#6B7280>ranked by peak util & overload h</color></size>" as BOT #EEF2F7
+    rectangle "<b>MRP / Sourcing</b>\n<size:10><color:#6B7280>BOM explode -> ATP roll-forward</color></size>\n<size:10><color:#6B7280>+ lead time -> order-by date</color></size>" as MRP #EEF2F7
+}
+
+' ============================================================
+'  TIER 4 - DATA  (clarix.data_loader)
+' ============================================================
+package "DATA  -  clarix.data_loader  (cached parquet)" as T4 {
+    rectangle "<b>Canonical Tables</b>  <size:10><color:#6B7280>// 8 dataframes</color></size>\n====================\nfact_pipeline_monthly\nfact_wc_capacity_weekly\nfact_wc_limits_monthly\nbridge_material_tool_wc\nfact_inventory_snapshot\nfact_finished_to_component\ndim_project\ndim_material_master" as FACT #FFFFFF
+    rectangle "<b>hackathon_dataset.xlsx</b>\n<size:10><color:#6B7280>12 sheets  |  ~26 MB  |  source of truth</color></size>" as XLSX #EEF2F7
+}
+
+' ============================================================
+'  FLOWS
+' ============================================================
+PLANNER -down-> UI    : clicks / asks
+UI      -down-> AGENT : prompt
+AGENT   -down-> CAP   : invokes
+AGENT   -down-> SCEN
+AGENT   -down-> BOT
+AGENT   -down-> MRP
+
+CAP  -down-> FACT
+SCEN -down-> FACT
+BOT  -down-> FACT
+MRP  -down-> FACT
+FACT -down-> XLSX     : loaded once
+
+AGENT -up-> UI       : answer + reasoning
+UI    -up-> PLANNER  : action
+
+' alignment
+PLANNER -[hidden]right- UI
+CAP  -[hidden]right- SCEN
+SCEN -[hidden]right- BOT
+BOT  -[hidden]right- MRP
+FACT -[hidden]right- XLSX
+
+@enduml

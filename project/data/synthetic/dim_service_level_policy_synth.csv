@@ -1,0 +1,5 @@
+revenue_tier,urgency_band,target_service_level_synth,expedite_days_threshold_synth,generation_logic,generation_version,random_seed
+Small,standard,0.9,14,deterministic_revenue_tier_policy,wave1_seeded_v1,42
+Medium,priority,0.94,7,deterministic_revenue_tier_policy,wave1_seeded_v1,42
+Large,priority,0.97,3,deterministic_revenue_tier_policy,wave1_seeded_v1,42
+Strategic,critical,0.995,0,deterministic_revenue_tier_policy,wave1_seeded_v1,42

@@ -1,0 +1,10 @@
+action_type,trigger_condition,minimum_priority_threshold,minimum_risk_threshold,requires_alt_plant_flag,allows_expedite_flag,allows_upshift_flag,expected_effect_type,policy_version
+buy_now,sourcing_risk_score >= 0.7 AND shortage_flag AND lead_time allows,0.3,0.6,False,False,False,reduce_shortage,v1
+wait,risk_score_base < 0.3 AND priority_score < 0.4,0.0,0.0,False,False,False,hedge_uncertainty,v1
+reroute,logistics_risk_score >= 0.5 AND alt plant available with capacity,0.4,0.4,True,False,False,reduce_delay,v1
+upshift,capacity_risk_score >= 0.8 AND upshift limit available,0.3,0.5,False,False,True,reduce_overload,v1
+expedite_shipping,logistics_risk_score >= 0.6 AND expedite_allowed_flag,0.5,0.5,False,True,False,reduce_delay,v1
+reschedule,capacity_risk_score >= 0.6 AND priority_score < 0.5,0.0,0.4,False,False,False,reduce_overload,v1
+escalate,"action_score_base >= 0.8 AND top_driver in [capacity_risk, sourcing_risk]",0.7,0.7,False,False,False,escalate_decision,v1
+hedge_inventory,sourcing_risk_score >= 0.5 AND coverage_days_or_weeks < 14,0.2,0.3,False,False,False,hedge_uncertainty,v1
+split_production,capacity_risk_score >= 0.7 AND alt plant available,0.4,0.6,True,False,False,reduce_overload,v1

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d33636"/>
+      <stop offset="1" stop-color="#7a1818"/>
+    </linearGradient>
+  </defs>
+  <!-- top-left diamond ring -->
+  <g transform="translate(20 20) rotate(45)" stroke="url(#g)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="-13" y="-13" width="26" height="26" rx="3" fill="none"/>
+  </g>
+  <!-- bottom-right diamond ring, interlocked -->
+  <g transform="translate(44 44) rotate(45)" stroke="#bb2727" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="-13" y="-13" width="26" height="26" rx="3" fill="none"/>
+  </g>
+  <!-- center spark hint of overlap -->
+  <circle cx="32" cy="32" r="3" fill="#bb2727"/>
+</svg>

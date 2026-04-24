@@ -1,0 +1,16 @@
+country_code,labor_cost_index_synth,energy_cost_index_synth,generation_logic,generation_version,random_seed
+US,1.2287,0.6045,seeded_uniform_country_indices,wave1_seeded_v1,42
+DE,0.8267,0.8991,seeded_uniform_country_indices,wave1_seeded_v1,42
+PL,1.3303,0.4574,seeded_uniform_country_indices,wave1_seeded_v1,42
+IN,1.1368,1.1449,seeded_uniform_country_indices,wave1_seeded_v1,42
+CN,0.413,0.9685,seeded_uniform_country_indices,wave1_seeded_v1,42
+US2,1.4707,1.0823,seeded_uniform_country_indices,wave1_seeded_v1,42
+US3,1.2134,0.7191,seeded_uniform_country_indices,wave1_seeded_v1,42
+ES,1.2433,1.2736,seeded_uniform_country_indices,wave1_seeded_v1,42
+CH,0.4537,1.2038,seeded_uniform_country_indices,wave1_seeded_v1,42
+LV,0.8405,1.1005,seeded_uniform_country_indices,wave1_seeded_v1,42
+IL,0.745,0.5752,seeded_uniform_country_indices,wave1_seeded_v1,42
+BR,1.4121,0.82,seeded_uniform_country_indices,wave1_seeded_v1,42
+CL,1.0726,0.4394,seeded_uniform_country_indices,wave1_seeded_v1,42
+AU,1.2873,0.5389,seeded_uniform_country_indices,wave1_seeded_v1,42
+VN,0.8321,1.0147,seeded_uniform_country_indices,wave1_seeded_v1,42

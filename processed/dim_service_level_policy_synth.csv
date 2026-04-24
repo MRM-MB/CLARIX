@@ -1,0 +1,5 @@
+revenue_tier,max_allowed_late_days,expedite_allowed_flag,reroute_allowed_flag,premium_shipping_allowed_flag,service_penalty_weight,synthetic_generation_rule
+Small,14,False,False,False,0.05,business_rule_revenue_tier_hardcoded
+Medium,7,True,False,False,0.15,business_rule_revenue_tier_hardcoded
+Large,3,True,True,False,0.3,business_rule_revenue_tier_hardcoded
+Strategic,0,True,True,True,0.6,business_rule_revenue_tier_hardcoded

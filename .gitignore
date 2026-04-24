@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.omc/state/
+.omc
+.claude
+# Local secrets
+.env
+.env.local
+# Runtime cache
+data/.clarix_cache/
+*.pyc
+.DS_Store
