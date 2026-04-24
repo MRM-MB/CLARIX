@@ -1,17 +1,28 @@
-﻿# Clarix
+﻿<div align="center">
+  <img src="logo.png" alt="Clarix" width="180"/>
+  <h1>Clarix — Capacity & Sourcing Engine</h1>
+  <p>Built in one day at the <strong>Danfoss Climate Solutions AI Hackathon</strong> (April 2026, Denmark)</p>
+  <a href="https://clarix-danfoss.streamlit.app"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Open in Streamlit"/></a>
+</div>
 
-**Probabilistic Capacity & Sourcing Engine** built for a Danfoss Climate Solutions hackathon.
+---
 
-> Danfoss (Denmark) organized a 1-day AI hackathon challenging teams to build a predictive manufacturing system — forecasting production capacity, simulating supply chain scenarios, and optimizing raw material sourcing across a global factory network. This is our submission.
+### What is this?
+
+Danfoss challenged teams to solve a real manufacturing planning problem: **how do you turn an uncertain sales pipeline into concrete factory and sourcing decisions before a shortage becomes expensive?** Clarix answers that by propagating probability-weighted demand through real production constraints — maintenance windows, tool cycle times, OEE, shift limits — and surfacing a ranked action list for planners.
 
 ---
 
 ## Screenshots
 
-<!-- Add screenshots after running the app — place files in assets/screenshots/ -->
-| Dashboard | Capacity Heatmap | AI Agent |
-|-----------|-----------------|----------|
-| ![Overview](assets/screenshots/overview.png) | ![Capacity](assets/screenshots/capacity.png) | ![Agent](assets/screenshots/agent.png) |
+**Homepage — Quotation Decision Cockpit**
+![Homepage](readme_imgs/homepage.png)
+
+**General Data — Quarterly Snapshot & Delivery Health**
+![General Data](readme_imgs/data.png)
+
+**Machinery — Work Centers & Maintenance Schedule**
+![Machinery](readme_imgs/machinery.png)
 
 ---
 
@@ -19,7 +30,7 @@
 
 - **13-page Streamlit dashboard** — capacity planner, bottleneck detector, sourcing MRP, logistics disruptions, executive overview
 - **4 scenarios** — base / optimistic / pessimistic / monte carlo
-- **AI agent** — Claude `tool_use` answers natural-language planner questions with real engine data
+- **AI agent** — Claude `tool_use` answers natural-language planner questions backed by real engine data
 - **Demo mode** — guided 7-step narrative with step banners
 
 ---
@@ -27,21 +38,13 @@
 ## Quick start
 
 ```bash
-# 1. Install dependencies
 pip install -r requirements.txt
-
-# 2. (Optional) Set API key for live AI agent
-echo ANTHROPIC_API_KEY=sk-ant-... > .env
-
-# 3. Generate processed data for advanced pages (run once)
-python -m project.src.wave6.runner
-python -m project.src.wave7.runner
-
-# 4. Run
 streamlit run app.py
 ```
 
-Opens at **http://localhost:8501** — first load ~10 s (Excel parse), then instant.
+Opens at **http://localhost:8501**.
+
+> Optional: set `ANTHROPIC_API_KEY` in a `.env` file to enable the live AI agent.
 
 ---
 
@@ -51,21 +54,7 @@ Opens at **http://localhost:8501** — first load ~10 s (Excel parse), then inst
 
 ---
 
-## Project layout
-
-```
-app.py                  # Streamlit entry point (all 13 pages)
-clarix/                 # Core engine: data loader, capacity maths, charts, AI agent
-project/src/            # Wave 6/7 runners for advanced dashboard pages
-project/data/processed/ # Pre-generated CSVs consumed by advanced pages
-data/                   # hackathon_dataset.xlsx (26 MB, 13 sheets)
-```
-
----
-
 ## Team
-
-Built in one day at the Danfoss AI hackathon (April 2026).
 
 | Name | GitHub |
 |------|--------|
